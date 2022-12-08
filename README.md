@@ -1,10 +1,10 @@
-# Flitter Frontend
+# BeesKnees Frontend
 
 ## Date: 12/7/2022
 
-### By: Kalen Luciano: [GitHub](https://github.com/kalenluciano) | [LinkedIn](https://www.linkedin.com/in/kalen-luciano-52377b15b/)
+### By: Kalen Luciano: [GitHub](https://github.com/kalenluciano) | [LinkedIn](https://www.linkedin.com/in/kalenluciano/)
 
-#### [Flitter Backend](https://github.com/kalenluciano/flitter-backend)
+#### [BeeKnees Backend](https://github.com/kalenluciano/beesknees-backend)
 
 ####[Deployed Site]()
 
@@ -12,7 +12,17 @@
 
 ### **_Description_**
 
-This app allows users to post content, follow other users, and interact with other users' posts.
+This app allows users to post content, follow other users, and interact with other users' posts. Join the hive.
+
+---
+
+### **_Getting Started_**
+
+- `Fork` and `clone`
+- Run `npm install`
+- Run `npm start`
+
+A Trello board was used to keep track of development progress and can be viewed [here](https://trello.com/b/2omo5oFi/beesknees).
 
 ---
 
@@ -23,15 +33,9 @@ This app allows users to post content, follow other users, and interact with oth
 - CSS
 - HTML
 
----
+**_Component Hierarchy Diagram:_**
 
-### **_Getting Started_**
-
-- `Fork` and `clone`
-- Run `npm install`
-- Run `npm start`
-
-A Trello board was used to keep track of development progress and can be viewed [here](https://trello.com/b/2omo5oFi/flitter).
+![Component Hierarchy Diagram](./beesknees-component-hierarchy-diagram.png)
 
 ---
 
