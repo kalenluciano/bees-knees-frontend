@@ -4,7 +4,7 @@
 
 ### By: Kalen Luciano: [GitHub](https://github.com/kalenluciano) | [LinkedIn](https://www.linkedin.com/in/kalenluciano/)
 
-#### [BeeKnees Backend](https://github.com/kalenluciano/beesknees-backend)
+#### [BeeKnees Backend](https://github.com/kalenluciano/bees-knees-backend)
 
 #### [Deployed Site]()
 
