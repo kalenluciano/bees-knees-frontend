@@ -1,15 +1,15 @@
 import { createWebHistory, createRouter } from 'vue-router';
-import Explore from './pages/Explore';
-import Login from './pages/Login';
+import ExplorePage from './pages/ExplorePage';
+import LoginPage from './pages/LoginPage';
 import NewsFeed from './pages/NewsFeed';
-import Profile from './pages/Profile';
+import ProfilePage from './pages/ProfilePage';
 import SignUp from './pages/SignUp';
 
 const routes = [
 	{ path: '/', component: NewsFeed, name: 'NewsFeed' },
-	{ path: '/explore', component: Explore, name: 'Explore' },
-	{ path: '/profile/:user_id', component: Profile, name: 'Profile' },
-	{ path: '/login', component: Login, name: 'Login' },
+	{ path: '/explore', component: ExplorePage, name: 'ExplorePage' },
+	{ path: '/profile/:user_id', component: ProfilePage, name: 'ProfilePage' },
+	{ path: '/login', component: LoginPage, name: 'LoginPage' },
 	{ path: '/sign-up', component: SignUp, name: 'SignUp' }
 ];
 
