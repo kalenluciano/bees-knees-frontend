@@ -8,6 +8,7 @@
             <input @input="handleChange" name="password" type="password" placeholder="Enter a password" :value="formValues.password" required/>
             <button>Login</button>
         </form>
+        <RouterLink to="/sign-up" name="SignUp">Sign Up</RouterLink>
         <p v-if="error">Incorrect email or password. Please try again.</p>
     </div>
 </template>
