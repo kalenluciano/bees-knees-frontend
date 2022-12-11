@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <NavBar />
+    <NavBar :user="user" :authenticated="authenticated" @handleLogOut="handleLogOut" />
     <main>
       <RouterView :user="user" :authenticated="authenticated" @setAuthenticated="setAuthenticated" @setUser="setUser" ></RouterView>
     </main>
