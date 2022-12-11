@@ -2,7 +2,7 @@
   <div class="app">
     <NavBar />
     <main>
-      <RouterView></RouterView>
+      <RouterView :user="user" :authenticated="authenticated" @setAuthenticated="setAuthenticated" @setUser="setUser" ></RouterView>
     </main>
   </div>
 </template>

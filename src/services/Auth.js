@@ -1,14 +1,22 @@
 import Client from './api';
 
 export const LoginUser = async (data) => {
-	const res = await Client.post('/auth/login');
-	localStorage.setItem('token', res.data.token);
-	return res.data.user;
+	try {
+		const res = await Client.post('/auth/login', data);
+		localStorage.setItem('token', res.data.token);
+		return res.data.user;
+	} catch (error) {
+		return 'error';
+	}
 };
 
 export const SignUpUser = async (data) => {
-	const res = await Client.post('/auth/register');
-	return res.data;
+	try {
+		const res = await Client.post('/auth/register', data);
+		return res.data;
+	} catch (error) {
+		return 'error';
+	}
 };
 
 export const CheckSession = async () => {
