@@ -22,6 +22,7 @@
             <input @input="handleChange" name="dateOfBirth" type="date" :value="formValues.dateOfBirth" />
             <button>Sign Up</button>
         </form>
+        <p v-if="error">Looks like that email is already associated with another account.</p>
     </div>
 </template>
 
@@ -42,7 +43,8 @@ export default {
             coverPhoto: '',
             bio: '',
             dateOfBirth: ''
-        }
+        }, 
+        error: false
     }),
     methods: {
         handleChange(e) {
@@ -51,7 +53,7 @@ export default {
         async handleSubmit(e) {
             e.preventDefault()
             const dateOfBirth = new Date(this.formValues.dateOfBirth)
-            await SignUpUser({...this.formValues, dateOfBirth })
+            const payload = await SignUpUser({...this.formValues, dateOfBirth })
             this.formValues = {
                 firstName: '',
                 lastName: '',
@@ -63,7 +65,12 @@ export default {
                 bio: '',
                 dateOfBirth: ''
             }
-            this.$router.push('/login')
+            if (payload === 'error') {
+                this.error = true
+            } else {
+                this.error = false
+                this.$router.push('/login')
+            }            
         }
     }
 }
