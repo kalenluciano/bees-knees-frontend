@@ -18,9 +18,9 @@ This app allows users to post content, follow other users, and interact with oth
 
 ### **_Getting Started_**
 
-- `Fork` and `clone`
-- Run `npm install`
-- Run `npm start`
+-   `Fork` and `clone`
+-   Run `npm install`
+-   Run `npm start`
 
 A Trello board was used to keep track of development progress and can be viewed [here](https://trello.com/b/2omo5oFi/beesknees).
 
@@ -28,14 +28,14 @@ A Trello board was used to keep track of development progress and can be viewed 
 
 ### **_Technologies_**
 
-- React.js
-- JavaScript
-- CSS
-- HTML
+-   React.js
+-   JavaScript
+-   CSS
+-   HTML
 
 **_Component Hierarchy Diagram:_**
 
-![Component Hierarchy Diagram](./beesknees-component-hierarchy-diagram.png)
+![Component Hierarchy Diagram](./assets/beesknees-component-hierarchy-diagram.png)
 
 ---
 
@@ -49,7 +49,7 @@ A Trello board was used to keep track of development progress and can be viewed 
 
 ### **_Future Updates_**
 
-- [ ] TBD
+-   [ ] TBD
 
 ---
 
