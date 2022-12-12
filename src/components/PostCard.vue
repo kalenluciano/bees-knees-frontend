@@ -1,12 +1,14 @@
 <template>
     <div>
-        <h1>Post Card</h1>
+        <h3>{{post.username}}</h3>
+        <p>{{post.content}}</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'PostCard'
+    name: 'PostCard',
+    props: ['post']
 }
 </script>
 

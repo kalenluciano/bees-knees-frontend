@@ -32,10 +32,8 @@ export default {
     }),
     methods: {
         async getFollowingPosts() {
-            console.log(this.user.user.id)
             const response = await axios.get(`${BASE_URL}/posts/followed-users/user/${this.user.user.id}`)
             this.followingPosts = response.data
-            console.log(response.data)
         }
     },
     mounted: function() {
