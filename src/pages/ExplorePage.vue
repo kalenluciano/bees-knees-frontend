@@ -2,7 +2,7 @@
     <div>
         <h1>Explore</h1>
         <div v-if="discoverPosts" >
-            <div class="news-feed-container" :key="post.id" v-for="post in discoverPosts">
+            <div class="explore-feed-container" :key="post.id" v-for="post in discoverPosts">
                 <PostCard :post="post" />
             </div>
         </div>
@@ -28,13 +28,13 @@ export default {
         discoverPosts: null
     }),
     methods: {
-        async getFollowingPosts() {
+        async getAllPosts() {
             const response = await axios.get(`${BASE_URL}/posts/all/user/${this.userStore.user.id}`)
             this.discoverPosts = response.data
         }
     },
     mounted: function() {
-        this.getFollowingPosts()
+        this.getAllPosts()
     }
 }
 </script>

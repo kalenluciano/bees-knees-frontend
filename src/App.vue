@@ -3,7 +3,7 @@
     <div v-if="user.tokenChecked">
       <NavBar />
       <main>
-          <RouterView ></RouterView>
+          <RouterView :key="$route.path" ></RouterView>
       </main>
     </div>
     <div v-else>Loading...</div>

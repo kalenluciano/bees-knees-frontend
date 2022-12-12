@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>{{post.username}}</h3>
+        <RouterLink :to="{name: 'ProfilePage', params: {user_id: post.userId}}" name="ProfilePage">{{post.username}}</RouterLink>
         <p>{{post.content}}</p>
         <img :src="post?.media" />
         <p>{{post.updatedAt}}</p>

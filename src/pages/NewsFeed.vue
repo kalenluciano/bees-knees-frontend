@@ -1,14 +1,19 @@
 <template>
     <div>
-        <h1>News Feed</h1>
-        <PostForm @getFollowingPosts="getFollowingPosts" />
-        <div v-if="followingPosts" >
-            <div class="news-feed-container" :key="post.id" v-for="post in followingPosts">
-                <PostCard :post="post" />
+        <div v-if="userStore.user">
+            <h1>News Feed</h1>
+            <PostForm @getFollowingPosts="getFollowingPosts" />
+            <div v-if="followingPosts" >
+                <div class="news-feed-container" :key="post.id" v-for="post in followingPosts">
+                    <PostCard :post="post" />
+                </div>
+            </div>
+            <div v-else>
+                <h2>No posts.</h2>
             </div>
         </div>
         <div v-else>
-            <h2>No posts.</h2>
+            <LoginPage />
         </div>
     </div>
 </template>
@@ -19,6 +24,7 @@ import { BASE_URL } from '../globals';
 import PostCard from '../components/PostCard.vue';
 import PostForm from '../components/PostForm.vue'
 import { useUserStore } from '../stores/UserStore';
+import LoginPage from './LoginPage.vue';
 
 export default {
     setup() {
@@ -28,7 +34,8 @@ export default {
     name: 'NewsFeed',
     components: {
         PostCard,
-        PostForm
+        PostForm,
+        LoginPage
     },
     data: () => ({
         followingPosts: null
