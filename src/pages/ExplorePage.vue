@@ -3,7 +3,7 @@
         <h1>Explore</h1>
         <div v-if="discoverPosts" >
             <div class="explore-feed-container" :key="post.id" v-for="post in discoverPosts">
-                <PostCard :post="post" />
+                <PostCard :post="post" @handlePostChange="handlePostChange" />
             </div>
         </div>
     </div>
@@ -31,6 +31,10 @@ export default {
         async getAllPosts() {
             const response = await axios.get(`${BASE_URL}/posts/all/user/${this.userStore.user.id}`)
             this.discoverPosts = response.data
+        },
+        handlePostChange(post, key, value) {
+            const postToChange = this.discoverPosts.filter((discoverPost) => discoverPost.id === post.id)[0]
+            postToChange[key] = value
         }
     },
     mounted: function() {

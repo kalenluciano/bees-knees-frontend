@@ -3,7 +3,7 @@
         <ProfileInfo />
         <div v-if="userPosts" >
             <div class="profile-feed-container" :key="post.id" v-for="post in userPosts">
-                <PostCard :post="post" />
+                <PostCard :post="post" @handlePostChange="handlePostChange" />
             </div>
         </div>
     </div>
@@ -28,6 +28,10 @@ export default {
         async getUserPosts() {
             const response = await axios.get(`${BASE_URL}/posts/user/${this.$route.params.user_id}`)
             this.userPosts = response.data
+        },
+        handlePostChange(post, key, value) {
+            const postToChange = this.userPosts.filter((userPost) => userPost.id === post.id)[0]
+            postToChange[key] = value
         }
     },
     mounted: function() {

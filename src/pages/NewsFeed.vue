@@ -5,7 +5,7 @@
             <PostForm @getFollowingPosts="getFollowingPosts" />
             <div v-if="followingPosts && followingPostsLengthCheck" >
                 <div class="news-feed-container" :key="post.id" v-for="post in followingPosts">
-                    <PostCard :post="post" />
+                    <PostCard :post="post" @handlePostChange="handlePostChange" />
                 </div>
             </div>
             <div v-else>
@@ -46,6 +46,10 @@ export default {
             else {
                 this.followingPostsLengthCheck = false
             } 
+        },
+        handlePostChange(post, key, value) {
+            const postToChange = this.followingPosts.filter((followingPost) => followingPost.id === post.id)[0]
+            postToChange[key] = value
         }
     },
     mounted: function() {
