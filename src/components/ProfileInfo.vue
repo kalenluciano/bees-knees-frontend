@@ -14,8 +14,8 @@
                 <button @click="setDeleteProfileConfirmation(true)">Delete</button>
             </div>
             <div v-else>
-                <button v-if="!followingUser" @click="followUser">Follow</button>
-                <button v-else @click="unfollowerUser">Unfollow</button>
+                <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
+                <button v-else @click="changeFollowUserStatus">Unfollow</button>
             </div>
         </div>
         <div v-if="updateForm">
@@ -80,11 +80,11 @@ export default {
         updateUserInfo(newUserInfo) {
             this.userInfo = newUserInfo
         },
-        async followUser() {
-            await Client.post(`${BASE_URL}/users/${this.userStore.user.id}/followed-user/${this.userInfo.id}`)
-        },
-        async unfollowerUser() {
-            console.log('Need to build this route')
+        async changeFollowUserStatus() {
+            await Client.post(`${BASE_URL}/users/${this.userStore.user.id}/followed-user/${this.userInfo.id}`, {followingUser: this.followingUser})
+            this.followingUser = !this.followingUser
+            await this.getFollowStatus()
+            await this.getUserInfo()
         },
         async getFollowStatus() {
             const response = await axios.get(`${BASE_URL}/users/${this.userStore.user.id}/followed-user/${this.userInfo.id}`)
