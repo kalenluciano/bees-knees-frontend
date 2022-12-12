@@ -13,6 +13,10 @@
                 <button @click="navigateToUpdateForm">Update</button>
                 <button @click="setDeleteProfileConfirmation(true)">Delete</button>
             </div>
+            <div v-else>
+                <button v-if="!followingUser" @click="followUser">Follow</button>
+                <button v-else @click="unfollowerUser">Unfollow</button>
+            </div>
         </div>
         <div v-if="updateForm">
             <UpdateProfile :userInfo="userInfo" @updateUserInfo="updateUserInfo" @navigateToUpdateForm="navigateToUpdateForm" />
@@ -38,6 +42,13 @@ export default {
         const userStore = useUserStore()
         return {userStore}
     },
+    watch: {
+        userInfo(newUserInfo) {
+            if (newUserInfo) {
+                this.getFollowStatus()
+            }
+        }
+    },
     name: 'ProfileInfo',
     components: {
         UpdateProfile
@@ -46,6 +57,7 @@ export default {
         userInfo: null,
         updateForm: false,
         deleteProfileConfirmation: false,
+        followingUser: false
     }),
     methods: {
         async getUserInfo() {
@@ -67,6 +79,18 @@ export default {
         },
         updateUserInfo(newUserInfo) {
             this.userInfo = newUserInfo
+        },
+        async followUser() {
+            await Client.post(`${BASE_URL}/users/${this.userStore.user.id}/followed-user/${this.userInfo.id}`)
+        },
+        async unfollowerUser() {
+            console.log('Need to build this route')
+        },
+        async getFollowStatus() {
+            const response = await axios.get(`${BASE_URL}/users/${this.userStore.user.id}/followed-user/${this.userInfo.id}`)
+            if (response.data.length > 0) {
+                this.followingUser = true
+            }
         }
     },
     mounted: function() {
