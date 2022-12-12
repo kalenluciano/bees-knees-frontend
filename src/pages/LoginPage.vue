@@ -15,10 +15,14 @@
 
 <script>
 import { LoginUser } from '../services/Auth'
+import { useUserStore } from '../stores/UserStore'
 
 export default {
+    setup() {
+        const user = useUserStore()
+        return {user}
+    },
     name: 'LoginPage',
-    props: ['user', 'authenticated'],
     data: () => ({
         formValues: {
             email: '',
@@ -27,12 +31,6 @@ export default {
         error: false
     }),
     methods: {
-        setUser(user) {
-            this.$emit('setUser', user)
-        },
-        setAuthenticated(state) {
-            this.$emit('setAuthenticated', state)
-        },
         handleChange(e) {
             this.formValues[e.target.name] = e.target.value
         },
@@ -43,8 +41,8 @@ export default {
                 this.error = true
             } else {
                 this.error = false
-                this.setUser(payload)
-                this.setAuthenticated(true)
+                this.user.setUser(payload)
+                this.user.setAuthenticated(true)
                 this.$router.push('/')
             }
             this.formValues.email = ''

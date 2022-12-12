@@ -31,7 +31,6 @@ import { SignUpUser } from '../services/Auth'
 
 export default {
     name: 'SignUp',
-    props: ['user', 'authenticated'],
     data: () => ({
         formValues: {
             firstName: '',
