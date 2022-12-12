@@ -22,8 +22,8 @@ import { useUserStore } from '../stores/UserStore';
 
 export default {
     setup() {
-        const user = useUserStore()
-        return {user}
+        const userStore = useUserStore()
+        return {userStore: userStore}
     },
     name: 'NewsFeed',
     components: {
@@ -35,7 +35,7 @@ export default {
     }),
     methods: {
         async getFollowingPosts() {
-            const response = await axios.get(`${BASE_URL}/posts/followed-users/user/${this.user.user.id}`)
+            const response = await axios.get(`${BASE_URL}/posts/followed-users/user/${this.userStore.user.id}`)
             this.followingPosts = response.data
         }
     },
