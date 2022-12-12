@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>News Feed</h1>
+        <PostForm @getFollowingPosts="getFollowingPosts" />
         <div v-if="followingPosts" >
             <div class="news-feed-container" :key="post.id" v-for="post in followingPosts">
                 <PostCard :post="post" />
@@ -16,6 +17,7 @@
 import axios from 'axios';
 import { BASE_URL } from '../globals';
 import PostCard from '../components/PostCard.vue';
+import PostForm from '../components/PostForm.vue'
 import { useUserStore } from '../stores/UserStore';
 
 export default {
@@ -25,7 +27,8 @@ export default {
     },
     name: 'NewsFeed',
     components: {
-        PostCard
+        PostCard,
+        PostForm
     },
     data: () => ({
         followingPosts: null
