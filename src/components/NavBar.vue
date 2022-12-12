@@ -27,6 +27,7 @@ export default {
             this.user.setUser(null)
             this.user.setAuthenticated(false)
             localStorage.clear()
+            this.$router.push('/login')
         }
     }
 }

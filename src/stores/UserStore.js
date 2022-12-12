@@ -11,9 +11,12 @@ export const useUserStore = defineStore('UserStore', {
 	},
 	actions: {
 		async checkToken() {
-			const user = await CheckSession();
-			this.user = user;
-			this.authenticated = true;
+			const token = localStorage.getItem('token');
+			if (token) {
+				const user = await CheckSession();
+				this.user = user;
+				this.authenticated = true;
+			}
 			this.tokenChecked = true;
 		},
 		setUser(user) {

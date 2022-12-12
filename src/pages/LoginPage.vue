@@ -43,7 +43,11 @@ export default {
                 this.error = false
                 this.user.setUser(payload)
                 this.user.setAuthenticated(true)
-                this.$router.push('/')
+                if (this.$route.path === '/') {
+                    this.$router.go()
+                } else {
+                    this.$router.push('/')
+                }
             }
             this.formValues.email = ''
             this.formValues.password = ''

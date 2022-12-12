@@ -24,10 +24,7 @@ export default {
     NavBar
   }, 
   mounted: function() {
-    const token = localStorage.getItem('token')
-    if (token) {
       this.user.checkToken()
-    }
   }
 }
 </script>

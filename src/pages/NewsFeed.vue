@@ -3,7 +3,7 @@
         <div v-if="userStore.user">
             <h1>News Feed</h1>
             <PostForm @getFollowingPosts="getFollowingPosts" />
-            <div v-if="followingPosts" >
+            <div v-if="followingPosts && followingPostsLengthCheck" >
                 <div class="news-feed-container" :key="post.id" v-for="post in followingPosts">
                     <PostCard :post="post" />
                 </div>
@@ -11,9 +11,6 @@
             <div v-else>
                 <h2>No posts.</h2>
             </div>
-        </div>
-        <div v-else>
-            <LoginPage />
         </div>
     </div>
 </template>
@@ -24,7 +21,6 @@ import { BASE_URL } from '../globals';
 import PostCard from '../components/PostCard.vue';
 import PostForm from '../components/PostForm.vue'
 import { useUserStore } from '../stores/UserStore';
-import LoginPage from './LoginPage.vue';
 
 export default {
     setup() {
@@ -35,19 +31,30 @@ export default {
     components: {
         PostCard,
         PostForm,
-        LoginPage
     },
     data: () => ({
-        followingPosts: null
+        followingPosts: null,
+        followingPostsLengthCheck: false
     }),
     methods: {
         async getFollowingPosts() {
             const response = await axios.get(`${BASE_URL}/posts/followed-users/user/${this.userStore.user.id}`)
             this.followingPosts = response.data
+            if (response.data.length > 0) {
+                this.followingPostsLengthCheck = true
+            }
+            else {
+                this.followingPostsLengthCheck = false
+            } 
         }
     },
     mounted: function() {
-        this.getFollowingPosts()
+        if (this.userStore.user) {
+            this.getFollowingPosts()
+        }
+        else {
+            this.$router.push('/login')
+        }
     }
 }
 </script>
