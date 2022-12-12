@@ -1,5 +1,5 @@
 <template>
-    <div v-if="userInfo">
+    <div v-if="userInfo && userStore.user">
         <div v-if="!updateForm">
             <img v-if="userInfo.coverPhoto" :src="userInfo.coverPhoto" />
             <img v-else src="../../assets/bees-knees-cover-photo.jpeg" />
