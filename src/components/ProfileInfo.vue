@@ -15,27 +15,7 @@
             </div>
         </div>
         <div v-if="updateForm">
-            <form v-if="updateForm" @submit="handleSubmit">
-                <label for="firstName">First Name: </label>
-                <input @input="handleChange" name="firstName" type="text" placeholder="John" :value="formValues.firstName" required/>
-                <label for="lastName">Last Name: </label>
-                <input @input="handleChange" name="lastName" type="text" placeholder="Doe" :value="formValues.lastName" required/>
-                <label for="username">Username: </label>
-                <input @input="handleChange" name="username" type="text" placeholder="johndoe" :value="formValues.username" required/>
-                <label for="email">Email: </label>
-                <input @input="handleChange" name="email" type="email" placeholder="example@example.com" :value="formValues.email" required/>
-                <label for="password">Password: </label>
-                <input @input="handleChange" name="password" type="password" placeholder="Enter a password" :value="formValues.password" />
-                <label for="profilePic">Profile Picture: </label>
-                <input @input="handleChange" name="profilePic" type="text" placeholder="Submit a link to a profile picture" :value="formValues.profilePic"/>
-                <label for="coverPhoto">Cover Photo: </label>
-                <input @input="handleChange" name="coverPhoto" type="text" placeholder="Submit a link to a cover photo" :value="formValues.coverPhoto"/>
-                <label for="bio">Bio: </label>
-                <input @input="handleChange" name="bio" type="text" placeholder="About Me" :value="formValues.bio" />
-                <label for="dateOfBirth">Date Of Birth: </label>
-                <input @input="handleChange" name="dateOfBirth" type="date" :value="formValues.dateOfBirth" />
-                <button>Update Profile</button>
-            </form>
+            <UpdateProfile :userInfo="userInfo" @updateUserInfo="updateUserInfo" @navigateToUpdateForm="navigateToUpdateForm" />
         </div>
         <div v-if="deleteProfileConfirmation" >
             <p>Are you sure you want to exterminate your account?</p>
@@ -51,6 +31,7 @@ import axios from 'axios'
 import Client from '../services/api';
 import { BASE_URL } from '../globals';
 import { useUserStore } from '../stores/UserStore'
+import UpdateProfile from '../components/UpdateProfile.vue'
 
 export default {
     setup() {
@@ -58,22 +39,13 @@ export default {
         return {userStore}
     },
     name: 'ProfileInfo',
+    components: {
+        UpdateProfile
+    },
     data: () => ({
         userInfo: null,
         updateForm: false,
         deleteProfileConfirmation: false,
-        formValues: {
-            firstName: '',
-            lastName: '',
-            username: '',
-            email: '',
-            password: '',
-            profilePic: '',
-            coverPhoto: '',
-            bio: '',
-            dateOfBirth: ''
-        }, 
-        error: false
     }),
     methods: {
         async getUserInfo() {
@@ -90,37 +62,11 @@ export default {
         setDeleteProfileConfirmation(state) {
             this.deleteProfileConfirmation = state
         },
-        async navigateToUpdateForm(state) {
+        navigateToUpdateForm(state) {
             this.updateForm = state
-            const reformattedDateOfBirth = this.userInfo.dateOfBirth.split("T")[0]
-            this.formValues = {...this.userInfo, dateOfBirth: reformattedDateOfBirth}
         },
-        handleChange(e) {
-            this.formValues[e.target.name] = e.target.value
-        },
-        async handleSubmit(e) {
-            e.preventDefault()
-            const dateOfBirth = new Date(this.formValues.dateOfBirth)
-            const payload = await Client.put(`${BASE_URL}/users/${this.userStore.user.id}`, {...this.formValues, dateOfBirth })
-            console.log(payload)
-            this.formValues = {
-                firstName: '',
-                lastName: '',
-                username: '',
-                email: '',
-                password: '',
-                profilePic: '',
-                coverPhoto: '',
-                bio: '',
-                dateOfBirth: ''
-            }
-            if (payload === 'error') {
-                this.error = true
-            } else {
-                this.error = false
-                this.updateForm = false
-                this.userInfo = payload.data.payload[1][0]
-            }            
+        updateUserInfo(newUserInfo) {
+            this.userInfo = newUserInfo
         }
     },
     mounted: function() {
