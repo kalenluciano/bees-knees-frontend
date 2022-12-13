@@ -20,6 +20,7 @@
         <input @input="handleChange" name="dateOfBirth" type="date" :value="formValues.dateOfBirth" />
         <button>Update Profile</button>
     </form>
+    <button @click="goBack">Back</button>
     <p v-if="error">Looks like that email is already associated with another account.</p>
 </template>
 
@@ -77,7 +78,10 @@ export default {
                 this.error = false
                 this.$emit('navigateToUpdateForm', false)
                 this.$emit('updateUserInfo', payload.data.payload[1][0]) 
-            }            
+            }           
+        },
+        goBack() {
+            this.$emit('navigateToUpdateForm', false)
         }
     }
 }
