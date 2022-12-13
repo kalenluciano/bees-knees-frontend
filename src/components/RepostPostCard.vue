@@ -13,7 +13,7 @@ export default {
     props: ['post'], 
     methods: {
         navigateToNewsFeed() {
-            this.$router.push(`/post/${this.$route.params.post_id}`)
+            this.$router.push(`/post/${this.post.id}`)
         }
     }
 }

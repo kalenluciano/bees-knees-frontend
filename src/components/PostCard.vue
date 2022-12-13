@@ -5,12 +5,12 @@
                 <RouterLink :to="{name: 'ProfilePage', params: {user_id: post.userId}}" name="ProfilePage">{{post.username}}</RouterLink>
                 <div @click="navigateToPostDetails">
                     <p>{{post.content}}</p>
-                    <div>
-                        <RepostPostCard v-if="originalPost" :post="originalPost" />
-                        <img v-else :src="post?.media" />
-                    </div>
-                    <p>{{post.updatedAt}}</p>
                 </div>
+                <div v-if="post?.media">
+                    <RepostPostCard v-if="originalPost" :post="originalPost" />
+                    <img v-else :src="post?.media" />
+                </div>
+                <p>{{post.updatedAt}}</p>
                 <div>
                     <p>{{post.commentsCount}}</p>
                     <button @click="handleCommentClick">Comment</button>
