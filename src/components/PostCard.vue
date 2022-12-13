@@ -24,11 +24,13 @@ import ReactionButtons from './ReactionButtons.vue';
 export default {
     name: 'PostCard',
     props: ['post'],
+    emits: ['handlePostChange'],
     components: {
         ReactionButtons
     }, 
     methods: {
         handlePostChange(post, key, value) {
+            console.log("post card", post, key, value)
             this.$emit('handlePostChange', post, key, value)
         },
         handleCommentClick() {

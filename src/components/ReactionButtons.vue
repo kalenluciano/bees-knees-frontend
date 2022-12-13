@@ -75,6 +75,7 @@ export default {
             await Client.delete(`${BASE_URL}/posts/reaction/${this.post.id}/user/${this.userStore.user.id}`)
         },
         handlePostChange(post, key, value) {
+            console.log("reaction buttons", post, key, value)
             this.$emit('handlePostChange', post, key, value)
         }
     }
