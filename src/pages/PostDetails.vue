@@ -1,11 +1,16 @@
 <template>
-    <div v-if="postDetails">
+    <div v-if="postDetails?.content">
         <PostCard :post="postDetails" @handlePostChange="handlePostChange" />
         <div v-if="postDetails.comments">
             <div v-for="comment in postDetails.comments" :key="comment.id">
                 <CommentCard :comment="comment" @handlePostChange="handlePostChange" />
             </div>
         </div>
+    </div>
+    <div v-else>
+        <h1>Post cannot be found.</h1>
+        <h2>You wandered too far from the hive.</h2>
+        <button @click="goHome">Return Home</button>
     </div>
 </template>
 
@@ -37,7 +42,11 @@ export default {
 			this.postDetails = response.data;
 		},
         handlePostChange(post, key, value) {
+            console.log('test1')
 			if (post.id === this.postDetails.id) {
+                if (!this.postDetails?.content) {
+                    this.$router.push('/')
+                }
 				return (this.postDetails[key] = value);
 			}
 			const findComment = (comment, post, key, value) => {
@@ -56,15 +65,13 @@ export default {
 					return findComment(comment, post, key, value);
 				});
 			}
-		}
+		},
+        goHome() {
+            this.$router.push('/')
+        }
     },
     mounted: async function() {
         await this.getPostDetails()
-    },
-    updated: function() {
-        if (this.postDetails <= 0) {
-            this.$router.push('/')
-        } 
     }
 }
 </script>
