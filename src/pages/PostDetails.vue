@@ -1,11 +1,14 @@
 <template>
-    <div v-if="postDetails?.content">
+    <div v-if="postDetails?.content && !loading">
         <PostCard :post="postDetails" @handlePostChange="handlePostChange" />
         <div v-if="postDetails.comments">
             <div v-for="comment in postDetails.comments" :key="comment.id">
                 <CommentCard :comment="comment" @handlePostChange="handlePostChange" />
             </div>
         </div>
+    </div>
+    <div v-else-if="loading">
+        <h2>Loading content...</h2>
     </div>
     <div v-else>
         <h1>Post cannot be found.</h1>
@@ -32,17 +35,22 @@ export default {
         PostCard
     },
     data: () => ({
-        postDetails: null
+        postDetails: null,
+        loading: true
     }),
     methods: {
         async getPostDetails() {
-			const response = await axios.get(
-				`${BASE_URL}/posts/${this.$route.params.post_id}/user/${this.userStore.user.id}`
-			);
-			this.postDetails = response.data;
+            try {
+                const response = await axios.get(
+                    `${BASE_URL}/posts/${this.$route.params.post_id}/user/${this.userStore.user.id}`
+                );
+                this.postDetails = response.data;
+                this.loading = false
+            } catch (error) {
+                this.loading = false
+            }
 		},
         handlePostChange(post, key, value) {
-            console.log('test1')
 			if (post.id === this.postDetails.id) {
                 if (!this.postDetails?.content) {
                     this.$router.push('/')
