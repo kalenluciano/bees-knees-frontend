@@ -39,7 +39,7 @@ export default {
     }),
     methods: {
         async getPostById() {
-            const response = await axios.get(`${BASE_URL}/posts/${this.$route.params.post_id}`)
+            const response = await axios.get(`${BASE_URL}/posts/${this.$route.params.post_id}/user/${this.userStore.user.id}`)
             this.originalPost = response.data
         },
         handlePostChange(post, key, value) {
