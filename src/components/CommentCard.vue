@@ -22,7 +22,6 @@ export default {
     props: ['comment'],
     methods: {
         handlePostChange(post, key, value) {
-            console.log("comment card", post, key, value)
             this.$emit('handlePostChange', post, key, value)
         }
     }

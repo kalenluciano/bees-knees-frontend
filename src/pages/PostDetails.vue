@@ -35,10 +35,8 @@ export default {
 				`${BASE_URL}/posts/${this.$route.params.post_id}/user/${this.userStore.user.id}`
 			);
 			this.postDetails = response.data;
-			console.log(response.data);
 		},
         handlePostChange(post, key, value) {
-            console.log("post details", post, key, value)
 			if (post.id === this.postDetails.id) {
 				return (this.postDetails[key] = value);
 			}

@@ -30,10 +30,10 @@ export default {
     }, 
     methods: {
         handlePostChange(post, key, value) {
-            console.log("post card", post, key, value)
             this.$emit('handlePostChange', post, key, value)
         },
         handleCommentClick() {
+            this.$router.push(`/comment/${this.post.id}`)
             console.log('Still need to bring user to comment page and then from there back to post details or news feed with new comment underneath')
         },
         handleRepostClick() {

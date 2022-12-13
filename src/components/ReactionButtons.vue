@@ -36,7 +36,7 @@ export default {
     methods: {
         async reactToPost(e) {
             if (this.post?.reactionId === 0) {
-                await this.deleteReaction()
+                await this.deleteReaction(0)
                 this.handlePostChange(this.post, 'flagCount', this.post.flagCount - 1)
                 this.handlePostChange(this.post, 'reactionId', null)
                 if (e.target.value === "1") {
@@ -46,7 +46,7 @@ export default {
                 }
             }
             else if (this.post?.reactionId === 1) {
-                await this.deleteReaction()
+                await this.deleteReaction(1)
                 this.handlePostChange(this.post, 'likesCount', this.post.likesCount - 1)
                 this.handlePostChange(this.post, 'reactionId', null)
                 if (e.target.value === "0") {
@@ -71,11 +71,10 @@ export default {
         async postReaction(reactionId) {
             await Client.post(`${BASE_URL}/posts/reaction/${this.post.id}`, {reactionId, userId: this.userStore.user.id })
         },
-        async deleteReaction() {
-            await Client.delete(`${BASE_URL}/posts/reaction/${this.post.id}/user/${this.userStore.user.id}`)
+        async deleteReaction(reactionId) {
+            await Client.delete(`${BASE_URL}/posts/${this.post.id}/reaction/${reactionId}/user/${this.userStore.user.id}/`)
         },
         handlePostChange(post, key, value) {
-            console.log("reaction buttons", post, key, value)
             this.$emit('handlePostChange', post, key, value)
         }
     }

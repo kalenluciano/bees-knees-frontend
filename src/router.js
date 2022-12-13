@@ -5,6 +5,7 @@ import NewsFeed from './pages/NewsFeed';
 import ProfilePage from './pages/ProfilePage';
 import SignUp from './pages/SignUp';
 import PostDetails from './pages/PostDetails';
+import CommentPage from './pages/CommentPage';
 
 const routes = [
 	{ path: '/', component: NewsFeed, name: 'NewsFeed' },
@@ -12,7 +13,8 @@ const routes = [
 	{ path: '/profile/:user_id', component: ProfilePage, name: 'ProfilePage' },
 	{ path: '/login', component: LoginPage, name: 'LoginPage' },
 	{ path: '/sign-up', component: SignUp, name: 'SignUp' },
-	{ path: '/post/:post_id', component: PostDetails, name: 'PostDetails' }
+	{ path: '/post/:post_id', component: PostDetails, name: 'PostDetails' },
+	{ path: '/comment/:post_id', component: CommentPage, name: 'CommentPage' }
 ];
 
 const router = createRouter({
