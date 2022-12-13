@@ -97,7 +97,6 @@ export default {
             this.deletePostConfirmation = false
             if (response.data?.postToDecrementComment) {
                 const post = response.data.postToDecrementComment
-                console.log(post)
                 this.handlePostChange(post, 'commentsCount', post.commentsCount - 1 )
             }
             if (response.data?.postToDecrementRepost) {
