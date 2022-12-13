@@ -1,39 +1,41 @@
 <template>
     <div>
-        <div v-if="!updatePost">
-            <RouterLink :to="{name: 'ProfilePage', params: {user_id: post.userId}}" name="ProfilePage">{{post.username}}</RouterLink>
-            <div @click="navigateToPostDetails">
-                <p>{{post.content}}</p>
-                <div>
-                    <RepostPostCard v-if="originalPost" :post="originalPost" />
-                    <img v-else :src="post?.media" />
+        <div v-if="post?.content || post?.media">
+            <div v-if="!updatePost">
+                <RouterLink :to="{name: 'ProfilePage', params: {user_id: post.userId}}" name="ProfilePage">{{post.username}}</RouterLink>
+                <div @click="navigateToPostDetails">
+                    <p>{{post.content}}</p>
+                    <div>
+                        <RepostPostCard v-if="originalPost" :post="originalPost" />
+                        <img v-else :src="post?.media" />
+                    </div>
+                    <p>{{post.updatedAt}}</p>
                 </div>
-                <p>{{post.updatedAt}}</p>
+                <div>
+                    <p>{{post.commentsCount}}</p>
+                    <button @click="handleCommentClick">Comment</button>
+                </div>
+                <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
+                <div>
+                    <p>{{post.repostCount}}</p>
+                    <button class="repost" @click="handleRepostClick" >Repost</button>
+                </div>
             </div>
-            <div>
-                <p>{{post.commentsCount}}</p>
-                <button @click="handleCommentClick">Comment</button>
-            </div>
-            <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
-            <div>
-                <p>{{post.repostCount}}</p>
-                <button class="repost" @click="handleRepostClick" >Repost</button>
-            </div>
+            <div v-if="userStore.user.id === post.userId">
+                <div v-if="!deletePostConfirmation && !updatePost">
+                    <button @click="navigateToUpdateForm(true)">Update</button>
+                    <button @click="setDeletePostConfirmation(true)">Delete</button>
+                </div>
+                <div v-if="updatePost">
+                    <UpdatePostForm :post="post" @handlePostChange="handlePostChange" @navigateToUpdateForm="navigateToUpdateForm" />
+                </div>
+                <div v-if="deletePostConfirmation" >
+                    <p>Are you sure you want to exterminate your post?</p>
+                    <p>This action can't be undone.</p>
+                    <button @click="setDeletePostConfirmation(false)">Never Mind</button>
+                    <button @click="deletePost">Delete</button>
+                </div>
         </div>
-        <div v-if="userStore.user.id === post.userId">
-            <div v-if="!deletePostConfirmation && !updatePost">
-                <button @click="navigateToUpdateForm(true)">Update</button>
-                <button @click="setDeletePostConfirmation(true)">Delete</button>
-            </div>
-            <div v-if="updatePost">
-                <UpdatePostForm :post="post" @handlePostChange="handlePostChange" @navigateToUpdateForm="navigateToUpdateForm" />
-            </div>
-            <div v-if="deletePostConfirmation" >
-                <p>Are you sure you want to exterminate your post?</p>
-                <p>This action can't be undone.</p>
-                <button @click="setDeletePostConfirmation(false)">Never Mind</button>
-                <button @click="deletePost">Delete</button>
-            </div>
         </div>
     </div>
 </template>
@@ -45,6 +47,7 @@ import axios from 'axios';
 import { BASE_URL } from '../globals';
 import { useUserStore } from '../stores/UserStore';
 import UpdatePostForm from './UpdatePostForm.vue';
+import Client from '@/services/api';
 
 export default {
     setup() {
@@ -88,7 +91,19 @@ export default {
             this.deletePostConfirmation = state
         },
         async deletePost() {
-            console.log('need to make controller for this on the backend')
+            const response = await Client.delete(`${BASE_URL}/posts/post/${this.post.id}`)
+            this.handlePostChange(this.post, 'content', '')
+            this.handlePostChange(this.post, 'media', '')
+            this.deletePostConfirmation = false
+            if (response.data?.postToDecrementComment) {
+                const post = response.data.postToDecrementComment
+                console.log(post)
+                this.handlePostChange(post, 'commentsCount', post.commentsCount - 1 )
+            }
+            if (response.data?.postToDecrementRepost) {
+                const post = response.data.postToDecrementRepost
+                this.handlePostChange(post, 'repostCount', post.repostCount - 1)
+            }
         }
     },
     mounted: function() {

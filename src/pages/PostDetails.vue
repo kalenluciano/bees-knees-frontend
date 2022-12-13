@@ -60,6 +60,11 @@ export default {
     },
     mounted: async function() {
         await this.getPostDetails()
+    },
+    updated: function() {
+        if (this.postDetails <= 0) {
+            this.$router.push('/')
+        } 
     }
 }
 </script>
