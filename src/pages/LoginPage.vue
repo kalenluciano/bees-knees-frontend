@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="bg-slate-900">
         <h1>Login Page</h1>
         <form @submit="handleSubmit">
             <label for="email">Email: </label>

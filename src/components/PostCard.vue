@@ -8,7 +8,7 @@
                 </div>
                 <div v-if="post?.media">
                     <RepostPostCard v-if="originalPost" :post="originalPost" />
-                    <img v-else :src="post?.media" />
+                    <PostImage v-else :src="post?.media" />
                 </div>
                 <p>{{post.updatedAt}}</p>
                 <div>
@@ -18,7 +18,7 @@
                 <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
                 <div>
                     <p>{{post.repostCount}}</p>
-                    <button class="repost" @click="handleRepostClick" >Repost</button>
+                    <button class="repost" @click="handleRepostClick">Repost</button>
                 </div>
             </div>
             <div v-if="userStore.user.id === post.userId">
@@ -48,6 +48,7 @@ import { BASE_URL } from '../globals';
 import { useUserStore } from '../stores/UserStore';
 import UpdatePostForm from './UpdatePostForm.vue';
 import Client from '@/services/api';
+import PostImage from './PostImage.vue';
 
 export default {
     setup() {
@@ -60,7 +61,8 @@ export default {
     components: {
         ReactionButtons,
         RepostPostCard,
-        UpdatePostForm
+        UpdatePostForm,
+        PostImage
     }, 
     data: () => ({
         originalPost: null,

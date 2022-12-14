@@ -51,7 +51,6 @@ export default {
     },
     methods: {
         updateForm() {
-
             const reformattedDateOfBirth = this.userInfo.dateOfBirth?.split("T")[0]
             this.formValues = {...this.userInfo, dateOfBirth: reformattedDateOfBirth}
         },
