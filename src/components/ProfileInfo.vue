@@ -13,7 +13,7 @@
                 <button @click="navigateToUpdateForm">Update</button>
                 <button @click="setDeleteProfileConfirmation(true)">Delete</button>
             </div>
-            <div v-else>
+            <div v-else-if="!userInfo.id === userStore.user.id">
                 <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
                 <button v-else @click="changeFollowUserStatus">Unfollow</button>
             </div>
@@ -68,8 +68,8 @@ export default {
             await Client.delete(`${BASE_URL}/users/${this.userStore.user.id}`)
             this.userStore.setUser(null)
             this.userStore.setAuthenticated(false)
-            localStorage.clear()
             this.$router.push('/')
+            localStorage.clear()
         },
         setDeleteProfileConfirmation(state) {
             this.deleteProfileConfirmation = state
