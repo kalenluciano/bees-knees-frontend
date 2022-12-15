@@ -23,6 +23,7 @@
             <button>Sign Up</button>
         </form>
         <p v-if="error">Looks like that email is already associated with another account.</p>
+        <RouterLink to="/login" name="LoginPage">Login</RouterLink>
     </div>
 </template>
 
@@ -76,5 +77,7 @@ export default {
 </script>
 
 <style>
-    
+    /* body {
+        background-color: white;
+    } */
 </style>

@@ -1,15 +1,35 @@
 <template>
-    <div class="bg-slate-900">
-        <h1>Login Page</h1>
-        <form @submit="handleSubmit">
-            <label for="email">Email: </label>
-            <input @input="handleChange" name="email" type="email" placeholder="example@example.com" :value="formValues.email" required/>
-            <label for="password">Password: </label>
-            <input @input="handleChange" name="password" type="password" placeholder="Enter a password" :value="formValues.password" required/>
-            <button>Login</button>
-        </form>
-        <RouterLink to="/sign-up" name="SignUp">Sign Up</RouterLink>
-        <p v-if="error">Incorrect email or password. Please try again.</p>
+    <div class="login-body">
+        <div class="login-page">
+            <div class="login-left-side">
+                <h1>Bees Knees</h1>
+                <div class="login-list-container">
+                    <div class="login-list">
+                        <img class="login-icons" src="../assets/swarm.png" />
+                        <h2>Follow your swarm</h2>
+                    </div>
+                    <div class="login-list">
+                        <img class="login-icons" src="../assets/bee.png"/>
+                        <h2>Hear the buzz</h2>
+                    </div>
+                    <div class="login-list">
+                        <img class="login-icons" src="../assets/hive.png"/>
+                        <h2>Join the hive</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="login-right-side">
+                <form @submit="handleSubmit" class="login-form">
+                    <!-- <label for="email">Email: </label> -->
+                    <input @input="handleChange" name="email" type="email" placeholder="Email" :value="formValues.email" required/>
+                    <!-- <label for="password">Password: </label> -->
+                    <input @input="handleChange" name="password" type="password" placeholder="Password" :value="formValues.password" required/>
+                    <button>Buzz In</button>
+                </form>
+                <h3>Don't have an account? <RouterLink to="/sign-up" name="SignUp">Sign Up</RouterLink></h3>
+            </div>
+            <p v-if="error">Incorrect email or password. Please try again.</p>
+        </div>
     </div>
 </template>
 
@@ -56,6 +76,111 @@ export default {
 }
 </script>
 
-<style>
+<style >
+/* * {
+    border: 1px black solid;
+} */
+
+.login-body h2 {
+    font-size: 1.45rem;
+}
+
+.login-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.login-left-side, .login-right-side {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-flow: column wrap;
+}
+
+.login-right-side {
+    background-color: #31495E;
+}
+
+.login-form {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    width: 100%;
+}
+
+.login-icons {
+    width: 3rem;
+    height: 3rem;
+    object-fit: cover;
+    object-position: center;
+    margin: 0 1rem;
+}
+
+.login-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-list-container {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: flex-start;
+}
+
+.login-form input {
+    margin: .25rem 0;
+    border-radius: 5px;
+    width: 90%;
+    max-width: 400px;
+    padding: .25rem 1rem;
+}
+
+.login-form button {
+    margin-top: 1.5rem;
+    margin-bottom: .5rem;
+    border-radius: 5px;
+    width: 5rem;
+    height: 1.5rem;
+    color: white;
+    background-color: #31495E;
+    transition: all 0.3s ease;
+}
+
+.login-form button:hover {
+    color: #31495E;
+    background-color: white;
+}
+
+.login-page a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+
+    .login-body {
+        margin: 25% 0 0 0;
+        height: 75vh;
+    }
+
+    .login-page {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .login-left-side {
+        height: auto;
+    }
+
+    .login-right-side {
+        height: auto;
+        justify-content: flex-start;
+        margin-top: 50px;
+    }
+
+}
 
 </style>

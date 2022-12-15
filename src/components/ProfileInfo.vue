@@ -2,9 +2,9 @@
     <div v-if="userInfo && userStore.user">
         <div v-if="!updateForm">
             <img v-if="userInfo.coverPhoto" :src="userInfo.coverPhoto" />
-            <img v-else src="../../assets/bees-knees-cover-photo.jpeg" />
+            <img v-else src="../assets/bees-knees-cover-photo.jpeg" />
             <img v-if="userInfo.profilePic" :src="userInfo.profilePic" />
-            <img v-else src="../../assets/bees-knees-profile-picture.jpeg" />
+            <img v-else src="../assets/bees-knees-profile-picture.jpeg" />
             <h1>{{userInfo.firstName}} {{userInfo.lastName}}</h1>
             <p>{{userInfo.bio}}</p>
             <p>Followers: {{userInfo.followerCount}}</p>

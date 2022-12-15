@@ -6,10 +6,10 @@
             <RouterLink :to="{name: 'ProfilePage', params: {user_id: user.user.id}}" name="ProfilePage">Profile</RouterLink>
             <RouterLink to="/" name="NewsFeed" @click="handleLogOut" >Log Out</RouterLink>
         </nav>
-        <nav v-else >
+        <!-- <nav v-else >
             <RouterLink to="/login" name="LoginPage">Login</RouterLink>
             <RouterLink to="/sign-up" name="SignUp">Sign Up</RouterLink>
-        </nav>
+        </nav> -->
     </div>
 </template>
 
