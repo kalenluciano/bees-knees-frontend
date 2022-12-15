@@ -130,7 +130,8 @@ export default {
 <style>
 .post-card-container {
     max-width: 1000px;
-    border: .5px #31495E solid;
+    border-top: .5px #31495E solid;
+    border-bottom: .5px #31495E solid;
     padding: 10px;
     background-color: #F7F7F9;
     position: relative;

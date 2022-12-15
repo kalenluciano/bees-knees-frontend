@@ -37,7 +37,6 @@ export default {
 nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    max-width: 1000px;
     height: 100px;
     background-color: #F2DA02;
 }

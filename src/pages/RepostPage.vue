@@ -58,7 +58,7 @@ export default {
 
 <style>
 .repost-form {
-    max-width: 1000px;
+    /* max-width: 1000px; */
     display: flex;
     flex-flow: column wrap;
     justify-content: center;

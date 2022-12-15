@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="profile-page">
         <ProfileInfo />
         <div v-if="userPosts" >
             <div class="profile-feed-container" :key="post.id" v-for="post in userPosts">
@@ -41,5 +41,7 @@ export default {
 </script>
 
 <style>
-
+.profile-page, .profile-page * {
+    /* max-width: 1000px; */
+}
 </style>

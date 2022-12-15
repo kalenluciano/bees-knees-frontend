@@ -1,10 +1,10 @@
 <template>
     <div v-if="userInfo && userStore.user">
         <div v-if="!updateForm">
-            <img v-if="userInfo.coverPhoto" :src="userInfo.coverPhoto" />
-            <img v-else src="../assets/bees-knees-cover-photo.jpeg" />
-            <img v-if="userInfo.profilePic" :src="userInfo.profilePic" />
-            <img v-else src="../assets/bees-knees-profile-picture.jpeg" />
+            <img class="coverPhoto" v-if="userInfo.coverPhoto" :src="userInfo.coverPhoto" />
+            <img class="coverPhoto" v-else src="../assets/bees-knees-cover-photo.jpeg" />
+            <img class="profilePic" v-if="userInfo.profilePic" :src="userInfo.profilePic" />
+            <img class="profilePic" v-else src="../assets/bees-knees-profile-picture.jpeg" />
             <h1>{{userInfo.firstName}} {{userInfo.lastName}}</h1>
             <p>{{userInfo.bio}}</p>
             <p>Followers: {{userInfo.followerCount}}</p>
@@ -100,5 +100,14 @@ export default {
 </script>
 
 <style>
+.coverPhoto {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
 
+.profilePic {
+    width: 50px
+}
 </style>

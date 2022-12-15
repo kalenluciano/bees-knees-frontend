@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="explore-page">
         <h1 class="pollination-header">Pollination Station</h1>
         <div v-if="discoverPosts" >
             <div class="explore-feed-container" :key="post.id" v-for="post in discoverPosts">
@@ -47,5 +47,9 @@ export default {
 .pollination-header {
     margin: 10px;
     color: #31495E;
+}
+
+.explore-page, .explore-page * {
+    max-width: 1000px;
 }
 </style>

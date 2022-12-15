@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <div v-if="user.tokenChecked">
+    <div class="in-app" v-if="user.tokenChecked">
       <NavBar />
-      <main>
+      <main class="in-in-app">
           <RouterView :key="$route.path" ></RouterView>
       </main>
     </div>
@@ -31,7 +31,8 @@ export default {
 
 <style>
 body { 
-  margin: 0
+  margin: 0;
+  background-color: #F7F7F9;
 }
 
 * {
@@ -49,8 +50,23 @@ button {
 }
 
 .app {
-  background-color: #F7F7F9;
-  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.in-app {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+.in-in-app {
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+  align-items: center;
 }
 
 </style>
