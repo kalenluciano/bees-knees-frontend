@@ -1,19 +1,23 @@
 <template>
-    <div v-if="userInfo && userStore.user">
-        <div v-if="!updateForm">
+    <div class="profile-info-page" v-if="userInfo && userStore.user">
+        <div class="profile-info" v-if="!updateForm">
             <img class="coverPhoto" v-if="userInfo.coverPhoto" :src="userInfo.coverPhoto" />
             <img class="coverPhoto" v-else src="../assets/bees-knees-cover-photo.jpeg" />
             <img class="profilePic" v-if="userInfo.profilePic" :src="userInfo.profilePic" />
             <img class="profilePic" v-else src="../assets/bees-knees-profile-picture.jpeg" />
-            <h1>{{userInfo.firstName}} {{userInfo.lastName}}</h1>
-            <p>{{userInfo.bio}}</p>
-            <p>Followers: {{userInfo.followerCount}}</p>
-            <p>Following: {{userInfo.followingCount}}</p>
-            <div v-if="userInfo.id === userStore.user.id && !deleteProfileConfirmation && !updateForm">
-                <button @click="navigateToUpdateForm">Update</button>
-                <button @click="setDeleteProfileConfirmation(true)">Delete</button>
+            <div class="edit-profile">
+                <h1>{{userInfo.firstName}} {{userInfo.lastName}}</h1>
+                <div class="edit-profile-buttons" v-if="userInfo.id === userStore.user.id && !deleteProfileConfirmation && !updateForm">
+                    <button id="update-profile-button" @click="navigateToUpdateForm">Update</button>
+                    <button @click="setDeleteProfileConfirmation(true)">Delete</button>
+                </div>
             </div>
-            <div v-else-if="userInfo.id !== userStore.user.id">
+            <p>{{userInfo.bio}}</p>
+            <div class="follow-counts">
+                <p>Followers: {{userInfo.followerCount}}</p>
+                <p id="following-count">Following: {{userInfo.followingCount}}</p>
+            </div>
+            <div v-if="userInfo.id !== userStore.user.id">
                 <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
                 <button v-else @click="changeFollowUserStatus">Unfollow</button>
             </div>
@@ -108,6 +112,47 @@ export default {
 }
 
 .profilePic {
-    width: 50px
+    margin: 10px 0 0 0;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
 }
+
+.follow-counts {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#following-count {
+    margin-left: 30px;
+}
+
+.edit-profile {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px
+}
+
+#update-profile-button {
+    margin-right: 10px;
+}
+
+.profile-info-page button {
+    cursor: pointer;
+    padding: .25rem;
+    color: black;
+    background-color: #F2DA02;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+.profile-info-page button:hover {
+    color: white;
+    background-color: #31495E;
+}
+
 </style>
