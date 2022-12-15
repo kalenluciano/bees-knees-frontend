@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="news-feed-page-container">
         <h1 class="buzz-header">The Buzz</h1>
         <div class="news-feed" v-if="userStore.user">
             <PostForm @getFollowingPosts="getFollowingPosts" />

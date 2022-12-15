@@ -99,4 +99,10 @@ export default {
     background-color: #31495E;
 }
 
+@media screen and (min-width: 1000px) {
+    .post-form {
+        width: 1000px
+    }
+}
+
 </style>

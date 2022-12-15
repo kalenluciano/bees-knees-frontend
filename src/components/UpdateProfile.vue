@@ -97,7 +97,7 @@ export default {
     display: flex;
     flex-flow: column wrap;
     align-items: center;
-    width: 100vw;
+    width: 100%;
 }
 
 .update-profile-form input, .update-profile-form textarea {

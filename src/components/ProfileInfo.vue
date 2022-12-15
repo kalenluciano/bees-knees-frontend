@@ -14,20 +14,22 @@
                     </div>
                 </div>
                 <p>{{userInfo.bio}}</p>
-                <div class="follow-counts">
-                    <p>Followers: {{userInfo.followerCount}}</p>
-                    <p id="following-count">Following: {{userInfo.followingCount}}</p>
-                </div>
-                <div v-if="userInfo.id !== userStore.user.id">
-                    <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
-                    <button v-else @click="changeFollowUserStatus">Unfollow</button>
+                <div class="follow-tools">
+                    <div class="follow-counts">
+                        <p>Followers: {{userInfo.followerCount}}</p>
+                        <p id="following-count">Following: {{userInfo.followingCount}}</p>
+                    </div>
+                    <div v-if="userInfo.id !== userStore.user.id">
+                        <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
+                        <button v-else @click="changeFollowUserStatus">Unfollow</button>
+                    </div>
                 </div>
             </div>
         </div>
         <div v-if="updateForm">
             <UpdateProfile :userInfo="userInfo" @updateUserInfo="updateUserInfo" @navigateToUpdateForm="navigateToUpdateForm" />
         </div>
-        <div v-if="deleteProfileConfirmation" >
+        <div class="delete-profile-confirmation" v-if="deleteProfileConfirmation" >
             <p>Are you sure you want to exterminate your account?</p>
             <p>This action can't be undone.</p>
             <button @click="setDeleteProfileConfirmation(false)">Never Mind</button>
@@ -107,8 +109,8 @@ export default {
 
 <style>
 .profile-info-page {
-    display: flex;
-    justify-content: center;
+    position: relative;
+    border-bottom: 1px #31495E solid;
 }
 
 .coverPhoto {
@@ -116,6 +118,8 @@ export default {
     height: 300px;
     object-fit: cover;
     object-position: center;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 .profilePic {
@@ -164,6 +168,35 @@ export default {
 .profile-info-page button:hover {
     color: white;
     background-color: #31495E;
+}
+
+.follow-tools {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-profile-confirmation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #31495E;
+    width: 100%;
+    height: 100%;
+    color: white;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete-profile-confirmation button {
+    margin: 10px;
+}
+
+.delete-profile-confirmation button:hover {
+    background-color: black;
+    color: #F2DA02;
 }
 
 </style>

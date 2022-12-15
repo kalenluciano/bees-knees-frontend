@@ -2,7 +2,7 @@
   <div class="app">
     <div class="in-app" v-if="user.tokenChecked">
       <NavBar />
-      <main class="in-in-app">
+      <main>
           <RouterView :key="$route.path" ></RouterView>
       </main>
     </div>
@@ -62,10 +62,10 @@ button {
   width: 100%;
 }
 
-.in-in-app {
+main { 
   display: flex;
   justify-content: center;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
 }
 

@@ -83,6 +83,7 @@ export default {
 .login-body {
     background-color: #F2DA02;
     color: #31495E;
+    width: 100%;
 }
 
 .login-page {
@@ -160,6 +161,10 @@ export default {
     color: white;
 }
 
+.login-page p {
+    color: #F2DA02;
+}
+
 @media screen and (max-width: 800px) {
 
     .login-body {
@@ -198,6 +203,10 @@ export default {
 
     .login-page a {
         text-decoration: none;
+        color: #31495E;
+    }
+
+    .login-page p {
         color: #31495E;
     }
 
