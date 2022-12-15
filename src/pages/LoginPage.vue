@@ -19,6 +19,7 @@
                 </div>
             </div>
             <div class="login-right-side">
+                <h1>Sign in to BeesKnees</h1>
                 <form @submit="handleSubmit" class="login-form">
                     <!-- <label for="email">Email: </label> -->
                     <input @input="handleChange" name="email" type="email" placeholder="Email" :value="formValues.email" required/>
@@ -77,10 +78,6 @@ export default {
 </script>
 
 <style >
-/* * {
-    border: 1px black solid;
-} */
-
 .login-body h2 {
     font-size: 1.45rem;
 }
@@ -100,6 +97,7 @@ export default {
 
 .login-right-side {
     background-color: #31495E;
+    color: #F2DA02;
 }
 
 .login-form {
@@ -132,7 +130,7 @@ export default {
 .login-form input {
     margin: .25rem 0;
     border-radius: 5px;
-    width: 90%;
+    width: 70%;
     max-width: 400px;
     padding: .25rem 1rem;
 }
@@ -143,9 +141,10 @@ export default {
     border-radius: 5px;
     width: 5rem;
     height: 1.5rem;
-    color: white;
-    background-color: #31495E;
+    color: black;
+    background-color: #F2DA02;
     transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .login-form button:hover {
@@ -155,13 +154,15 @@ export default {
 
 .login-page a {
     text-decoration: none;
+    color: white;
 }
 
 @media screen and (max-width: 800px) {
 
     .login-body {
-        margin: 25% 0 0 0;
-        height: 75vh;
+        padding: 25% 0 0 0;
+        height: 100vh;
+        background-color: #F2DA02;
     }
 
     .login-page {
@@ -179,6 +180,22 @@ export default {
         height: auto;
         justify-content: flex-start;
         margin-top: 50px;
+        color: #31495E;
+        background-color: #F2DA02;
+    }
+
+    .login-form button {
+        color: white;
+        background-color: #31495E;
+    }
+
+    .login-right-side h1 {
+        font-size: 1.5rem;
+    }
+
+    .login-page a {
+        text-decoration: none;
+        color: #31495E;
     }
 
 }
