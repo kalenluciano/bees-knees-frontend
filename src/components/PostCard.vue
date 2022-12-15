@@ -1,49 +1,49 @@
 <template>
-    <div>
-        <div class="post-card-container" v-if="post?.content || post?.media">
-            <div v-if="!updatePost">
+    <div class="post-card-container" v-if="post?.content || post?.media">
+        <div v-if="!updatePost">
+            <div class="post-user-info">
                 <RouterLink :to="{name: 'ProfilePage', params: {user_id: post.userId}}" name="ProfilePage">{{post.username}}</RouterLink>
-                <div class="post-content" @click="navigateToPostDetails">
-                    <p>{{post.content}}</p>
+                <div v-if="userStore.user.id === post.userId">
+                <div class="edit-post-tools" v-if="!deletePostConfirmation && !updatePost">
+                    <button  id="update-post-button" @click="navigateToUpdateForm(true)"><img src="../assets/edit.svg"/></button>
+                    <button @click="setDeletePostConfirmation(true)"><img src="../assets/trash.svg"/></button>
                 </div>
-                <div v-if="post?.media">
-                    <RepostPostCard v-if="originalPost" :post="originalPost" />
-                    <img v-else :src="post?.media" />
                 </div>
-                <p class="posted-date">Posted: {{updatedAt}}</p>
-                <div class="post-interactions">
-                    <div class="repost">
-                        <p>{{post.commentsCount}}</p>
-                        <div class="comment-button" >
-                            <img src="../assets/comment.svg" />
-                            <button @click="handleCommentClick">Comment</button>
-                        </div>
+            </div>
+            <div class="post-content" @click="navigateToPostDetails">
+                <p>{{post.content}}</p>
+            </div>
+            <div class="post-media" v-if="post?.media">
+                <RepostPostCard v-if="originalPost" :post="originalPost" />
+                <img v-else :src="post?.media" />
+            </div>
+            <p class="posted-date">Posted: {{updatedAt}}</p>
+            <div class="post-interactions">
+                <div class="repost">
+                    <p>{{post.commentsCount}}</p>
+                    <div class="comment-button" >
+                        <img src="../assets/comment.svg" />
+                        <button @click="handleCommentClick">Comment</button>
                     </div>
-                    <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
-                    <div class="comment">
-                        <p>{{post.repostCount}}</p>
-                        <div class="repost-button" >
-                            <img src="../assets/repost.svg" />
-                            <button @click="handleRepostClick">Repost</button>
-                        </div>
+                </div>
+                <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
+                <div class="comment">
+                    <p>{{post.repostCount}}</p>
+                    <div class="repost-button" >
+                        <img src="../assets/repost.svg" />
+                        <button @click="handleRepostClick">Repost</button>
                     </div>
                 </div>
             </div>
-            <div v-if="userStore.user.id === post.userId">
-                <div v-if="!deletePostConfirmation && !updatePost">
-                    <button @click="navigateToUpdateForm(true)">Update</button>
-                    <button @click="setDeletePostConfirmation(true)">Delete</button>
-                </div>
-                <div v-if="updatePost">
-                    <UpdatePostForm :post="post" @handlePostChange="handlePostChange" @navigateToUpdateForm="navigateToUpdateForm" />
-                </div>
-                <div v-if="deletePostConfirmation" >
-                    <p>Are you sure you want to exterminate your post?</p>
-                    <p>This action can't be undone.</p>
-                    <button @click="setDeletePostConfirmation(false)">Never Mind</button>
-                    <button @click="deletePost">Delete</button>
-                </div>
-            </div>
+        </div>
+        <div v-if="updatePost">
+            <UpdatePostForm :post="post" @handlePostChange="handlePostChange" @navigateToUpdateForm="navigateToUpdateForm" />
+        </div>
+        <div v-if="deletePostConfirmation" >
+            <p>Are you sure you want to exterminate your post?</p>
+            <p>This action can't be undone.</p>
+            <button @click="setDeletePostConfirmation(false)">Never Mind</button>
+            <button @click="deletePost">Delete</button>
         </div>
     </div>
 </template>
@@ -130,7 +130,9 @@ export default {
 <style>
 .post-card-container {
     max-width: 1000px;
-    border: 2px #31495E solid;
+    border: .5px #31495E solid;
+    padding: 10px;
+    background-color: #F7F7F9;
 }
 
 .post-card-container a {
@@ -167,6 +169,7 @@ export default {
     color: black;
     background-color: #F2DA02;
     transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 .comment-button button:hover, .repost-button button:hover {
@@ -179,8 +182,58 @@ export default {
     height: 25px;
 }
 
+.post-media {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.post-media img {
+    width: 90%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 5px;
+}
+
+.post-content {
+    padding: 0 0 10px 0;
+}
+
 .posted-date {
     font-size: .75rem;
+    margin: 0;
+}
+
+.post-user-info {
+    display: grid;
+    grid-template-columns: 70% 1fr;
+    margin-bottom: -0.5rem;
+}
+
+.edit-post-tools {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-post-tools button {
+    cursor: pointer;
+    padding: .25rem;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+}
+
+#update-post-button {
+    margin: 0 5px;
+}
+
+.edit-post-tools button:hover {
+    color: black;
+    background-color: #F2DA02;
+}
+
+.edit-post-tools img {
+    width: 10px;
 }
 
 @media screen and (max-width: 675px) {
@@ -188,7 +241,7 @@ export default {
         display: none;
     }
 
-    .comment-button button, .repost-button button {
+    .comment-button button, .repost-button button, .edit-post-tools button {
         font-size: small;
     }
 }

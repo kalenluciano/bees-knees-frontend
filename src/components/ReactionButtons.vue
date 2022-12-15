@@ -131,6 +131,7 @@ export default {
     color: black;
     background-color: #F2DA02;
     transition: all 0.3s ease;
+    border-radius: 5px;
 }
 
 .like-button button:hover, .dislike-button button:hover {

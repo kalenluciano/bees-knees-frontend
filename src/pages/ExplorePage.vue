@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1>Explore</h1>
+        <h1 class="pollination-header">Pollination Station</h1>
         <div v-if="discoverPosts" >
             <div class="explore-feed-container" :key="post.id" v-for="post in discoverPosts">
                 <PostCard :post="post" @handlePostChange="handlePostChange" />
@@ -44,5 +44,8 @@ export default {
 </script>
 
 <style>
-
+.pollination-header {
+    margin: 10px;
+    color: #31495E;
+}
 </style>

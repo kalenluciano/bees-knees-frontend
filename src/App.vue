@@ -48,4 +48,8 @@ button {
     padding: 0;
 }
 
+.app {
+  background-color: #F7F7F9;
+}
+
 </style>

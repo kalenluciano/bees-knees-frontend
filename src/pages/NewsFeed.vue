@@ -66,10 +66,15 @@ export default {
 <style>
 .buzz-header {
     margin: 10px;
+    color: #31495E;
 }
 
 .news-feed, .news-feed * {
     max-width: 1000px;
+}
+
+.news-feed {
+    background-color: #F7F7F9;
 }
 
 </style>

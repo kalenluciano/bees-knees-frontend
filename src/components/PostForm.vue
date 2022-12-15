@@ -69,6 +69,11 @@ export default {
 .post-form input {
     width: 95%;
     background-color: #31495E;
+    color: white
+}
+
+.post-form input::placeholder {
+    color: white
 }
 
 .post-form button {
