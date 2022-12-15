@@ -11,7 +11,7 @@
             </div>
         </form>
         <button class="update-post-back-button" @click="goBack">Back</button>
-        <p v-if="error">Looks like that email is already associated with another account.</p>
+        <p v-if="error">Oops something went wrong. Please try again.</p>
     </div>
 </template>
 

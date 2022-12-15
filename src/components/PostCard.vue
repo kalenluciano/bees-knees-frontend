@@ -39,7 +39,7 @@
         <div v-if="updatePost">
             <UpdatePostForm :post="post" @handlePostChange="handlePostChange" @navigateToUpdateForm="navigateToUpdateForm" />
         </div>
-        <div v-if="deletePostConfirmation" >
+        <div class="delete-post-confirmation" v-if="deletePostConfirmation" >
             <p>Are you sure you want to exterminate your post?</p>
             <p>This action can't be undone.</p>
             <button @click="setDeletePostConfirmation(false)">Never Mind</button>
@@ -133,6 +133,7 @@ export default {
     border: .5px #31495E solid;
     padding: 10px;
     background-color: #F7F7F9;
+    position: relative;
 }
 
 .post-card-container a {
@@ -163,7 +164,7 @@ export default {
     margin: 0 5px;
 }
 
-.comment-button button, .repost-button button {
+.delete-post-confirmation button, .comment-button button, .repost-button button {
     cursor: pointer;
     padding: .25rem;
     color: black;
@@ -175,6 +176,11 @@ export default {
 .comment-button button:hover, .repost-button button:hover {
     color: white;
     background-color: #31495E;
+}
+
+.delete-post-confirmation button:hover {
+    background-color: black;
+    color: #F2DA02;
 }
 
 .comment-button img, .repost-button img {
@@ -233,6 +239,21 @@ export default {
 
 .edit-post-tools img {
     width: 10px;
+}
+
+.delete-post-confirmation {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #31495E;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-align: center;
+}
+
+.delete-post-confirmation button {
+    margin: 10px;
 }
 
 @media screen and (max-width: 675px) {

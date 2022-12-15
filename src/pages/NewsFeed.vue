@@ -73,8 +73,4 @@ export default {
     max-width: 1000px;
 }
 
-.news-feed {
-    background-color: #F7F7F9;
-}
-
 </style>
