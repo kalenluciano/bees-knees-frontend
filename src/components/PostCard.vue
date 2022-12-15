@@ -129,10 +129,8 @@ export default {
 
 <style>
 .post-card-container {
-    margin: 10px 1px;
     max-width: 1000px;
     border: 2px #31495E solid;
-    border-radius: 5px;
 }
 
 .post-card-container a {

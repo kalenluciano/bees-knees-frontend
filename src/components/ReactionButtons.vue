@@ -110,9 +110,9 @@ export default {
 </script>
 
 <style>
-* {
+/* * {
     border: 1px solid black
-}
+} */
 
 .reactions {
     display: grid;

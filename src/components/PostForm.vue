@@ -52,8 +52,6 @@ export default {
     justify-content: center;
     align-items: center;
     border: 2px #31495E solid;
-    border-radius: 5px;
-    margin: 0 1px;
 }
 
 .post-form textarea {
