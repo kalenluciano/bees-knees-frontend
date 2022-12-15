@@ -34,6 +34,10 @@ body {
   margin: 0
 }
 
+* {
+  font-family:Arial, Helvetica, sans-serif
+}
+
 button {
     border-width: 0;
     font-family: inherit;
@@ -42,11 +46,6 @@ button {
     font-weight: inherit;
     line-height: inherit;
     padding: 0;
-}
-
-.app {
-  background-color: #F2DA02;
-  color: #31495E;
 }
 
 </style>

@@ -21,9 +21,7 @@
             <div class="login-right-side">
                 <h1>Sign in to BeesKnees</h1>
                 <form @submit="handleSubmit" class="login-form">
-                    <!-- <label for="email">Email: </label> -->
                     <input @input="handleChange" name="email" type="email" placeholder="Email" :value="formValues.email" required/>
-                    <!-- <label for="password">Password: </label> -->
                     <input @input="handleChange" name="password" type="password" placeholder="Password" :value="formValues.password" required/>
                     <button>Buzz In</button>
                 </form>
@@ -80,6 +78,11 @@ export default {
 <style >
 .login-body h2 {
     font-size: 1.45rem;
+}
+
+.login-body {
+    background-color: #F2DA02;
+    color: #31495E;
 }
 
 .login-page {

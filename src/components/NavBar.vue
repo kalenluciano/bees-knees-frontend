@@ -1,10 +1,10 @@
 <template>
     <div>
         <nav v-if="user.authenticated">
-            <RouterLink to="/" name="NewsFeed">The Buzz</RouterLink>
-            <RouterLink to="/explore" name="ExplorePage">Pollination Station</RouterLink>
-            <RouterLink :to="{name: 'ProfilePage', params: {user_id: user.user.id}}" name="ProfilePage">Profile</RouterLink>
-            <RouterLink to="/" name="NewsFeed" @click="handleLogOut" >Log Out</RouterLink>
+            <RouterLink to="/" name="NewsFeed"><img src="../assets/hive.png"/>The Buzz</RouterLink>
+            <RouterLink to="/explore" name="ExplorePage"><img src="../assets/sunflower.png"/>Pollination Station</RouterLink>
+            <RouterLink :to="{name: 'ProfilePage', params: {user_id: user.user.id}}" name="ProfilePage"><img src="../assets/bee.png"/>Profile</RouterLink>
+            <RouterLink to="/" name="NewsFeed" @click="handleLogOut"><img src="../assets/log-out.svg"/>Log Out</RouterLink>
         </nav>
         <!-- <nav v-else >
             <RouterLink to="/login" name="LoginPage">Login</RouterLink>
@@ -34,5 +34,17 @@ export default {
 </script>
 
 <style>
+nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-width: 1000px;
+}
 
+nav a {
+    font-size: small;
+}
+
+nav img {
+    width: 50px;
+}
 </style>
