@@ -3,23 +3,25 @@
         <div class="profile-info" v-if="!updateForm">
             <img class="coverPhoto" v-if="userInfo.coverPhoto" :src="userInfo.coverPhoto" />
             <img class="coverPhoto" v-else src="../assets/bees-knees-cover-photo.jpeg" />
-            <img class="profilePic" v-if="userInfo.profilePic" :src="userInfo.profilePic" />
-            <img class="profilePic" v-else src="../assets/bees-knees-profile-picture.jpeg" />
-            <div class="edit-profile">
-                <h1>{{userInfo.firstName}} {{userInfo.lastName}}</h1>
-                <div class="edit-profile-buttons" v-if="userInfo.id === userStore.user.id && !deleteProfileConfirmation && !updateForm">
-                    <button id="update-profile-button" @click="navigateToUpdateForm">Update</button>
-                    <button @click="setDeleteProfileConfirmation(true)">Delete</button>
+            <div class="profile-info-minus-pics">
+                <img class="profilePic" v-if="userInfo.profilePic" :src="userInfo.profilePic" />
+                <img class="profilePic" v-else src="../assets/bees-knees-profile-picture.jpeg" />
+                <div class="edit-profile">
+                    <h1>{{userInfo.firstName}} {{userInfo.lastName}}</h1>
+                    <div class="edit-profile-buttons" v-if="userInfo.id === userStore.user.id && !deleteProfileConfirmation && !updateForm">
+                        <button id="update-profile-button" @click="navigateToUpdateForm">Update</button>
+                        <button @click="setDeleteProfileConfirmation(true)">Delete</button>
+                    </div>
                 </div>
-            </div>
-            <p>{{userInfo.bio}}</p>
-            <div class="follow-counts">
-                <p>Followers: {{userInfo.followerCount}}</p>
-                <p id="following-count">Following: {{userInfo.followingCount}}</p>
-            </div>
-            <div v-if="userInfo.id !== userStore.user.id">
-                <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
-                <button v-else @click="changeFollowUserStatus">Unfollow</button>
+                <p>{{userInfo.bio}}</p>
+                <div class="follow-counts">
+                    <p>Followers: {{userInfo.followerCount}}</p>
+                    <p id="following-count">Following: {{userInfo.followingCount}}</p>
+                </div>
+                <div v-if="userInfo.id !== userStore.user.id">
+                    <button v-if="!followingUser" @click="changeFollowUserStatus">Follow</button>
+                    <button v-else @click="changeFollowUserStatus">Unfollow</button>
+                </div>
             </div>
         </div>
         <div v-if="updateForm">
@@ -104,6 +106,11 @@ export default {
 </script>
 
 <style>
+.profile-info-page {
+    display: flex;
+    justify-content: center;
+}
+
 .coverPhoto {
     width: 100%;
     height: 300px;
@@ -118,6 +125,10 @@ export default {
     object-fit: cover;
     object-position: center;
     border-radius: 50%;
+}
+
+.profile-info-minus-pics {
+    margin: 0 10px;
 }
 
 .follow-counts {

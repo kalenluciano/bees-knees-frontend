@@ -41,5 +41,7 @@ export default {
 </script>
 
 <style>
-
+.profile-page {
+    max-width: 1000px;
+}
 </style>
