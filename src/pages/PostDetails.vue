@@ -8,7 +8,7 @@
         </div>
     </div>
     <div v-else-if="loading">
-        <h2>Loading content...</h2>
+        <h2 class="error-message">Loading content...</h2>
     </div>
     <div v-else>
         <h1>Post cannot be found.</h1>

@@ -9,7 +9,7 @@
                 </div>
             </div>
             <div v-else>
-                <h2>No posts.</h2>
+                <h2 class="error-message">No posts.</h2>
             </div>
         </div>
     </div>
@@ -64,7 +64,7 @@ export default {
 </script>
 
 <style>
-.buzz-header {
+.buzz-header, .error-message {
     margin: 10px;
     color: #31495E;
 }
