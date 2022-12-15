@@ -9,7 +9,7 @@
                         <h2>Follow your swarm</h2>
                     </div>
                     <div class="login-list">
-                        <img class="login-icons" src="../assets/bee.png"/>
+                        <img id="bee-icon" class="login-icons" src="../assets/bee.png"/>
                         <h2>Hear the buzz</h2>
                     </div>
                     <div class="login-list">
