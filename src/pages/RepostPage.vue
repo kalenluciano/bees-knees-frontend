@@ -1,11 +1,10 @@
 <template>
     <div v-if="originalPost">
-        <form @submit="handleSubmit">
-            <label for="content">Content: </label>
-            <input @input="handleChange" name="content" type="text" placeholder="What's buzzing in your mind?" :value="formValues.content" />
-            <button>Post</button>
+        <PostCard :post="originalPost" />
+        <form class="repost-form" @submit="handleSubmit">
+            <textarea @input="handleChange" name="content" type="text" placeholder="What's buzzing in your mind?" :value="formValues.content" />
+            <button>Repost</button>
         </form>
-        <RepostPostCard :post="originalPost" />
     </div>
 </template>
 
@@ -14,7 +13,7 @@ import { useUserStore } from '../stores/UserStore';
 import { BASE_URL } from '../globals';
 import Client from '../services/api';
 import axios from 'axios';
-import RepostPostCard from '../components/RepostPostCard.vue';
+import PostCard from '../components/PostCard.vue';
 
 export default {
     setup() {
@@ -22,9 +21,9 @@ export default {
         return { userStore };
     },
     name: "RepostPage",
-    components: { 
-        RepostPostCard
-    },
+    components: {
+    PostCard
+},
     data: () => ({
         originalPost: null,
         formValues: {
@@ -56,3 +55,41 @@ export default {
     }
 }
 </script>
+
+<style>
+.repost-form {
+    max-width: 1000px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    border: 2px #31495E solid;
+}
+
+.repost-form textarea {
+    width: 99%;
+    height: 100px;
+}
+
+.repost-form textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+    resize: none;
+}
+
+.repost-form button {
+    border-bottom-right-radius: 5px;
+    padding: .25rem 0;
+    color: black;
+    background-color: #F2DA02;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+}
+
+.repost-form button:hover {
+    color: #F2DA02;
+    background-color: black;
+}
+</style>
