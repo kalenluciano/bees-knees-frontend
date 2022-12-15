@@ -1,5 +1,5 @@
 <template>
-    <div v-if="post">
+    <div class="repost-card" v-if="post">
         <div @click="navigateToNewsFeed">
             <p>{{post?.username}}</p>
             <p>{{post?.content}}</p>
@@ -18,3 +18,9 @@ export default {
     }
 }
 </script>
+
+<style>
+.repost-card {
+    justify-self: start;
+}
+</style>

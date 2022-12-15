@@ -50,6 +50,7 @@ button {
 
 .app {
   background-color: #F7F7F9;
+  height: 100vh;
 }
 
 </style>

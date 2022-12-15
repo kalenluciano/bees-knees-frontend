@@ -184,8 +184,7 @@ export default {
 
 .post-media {
     display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
 }
 
 .post-media img {
