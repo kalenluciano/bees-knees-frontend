@@ -34,10 +34,6 @@ export default {
 </script>
 
 <style>
-* {
-    border: 1px solid black
-}
-
 nav {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -55,6 +51,11 @@ nav a {
     text-decoration: none;
     transition: all 0.3s ease;
     color: #31495E;
+}
+
+nav a:hover {
+    color: white;
+    background-color: #31495E;
 }
 
 nav img {

@@ -1,22 +1,50 @@
 <template>
-    <div>
-        <div v-if="post?.reactionId === 0">
+    <div class="reactions" v-if="post?.reactionId === 0">
+        <div class="like">
             <p>{{post.likesCount}}</p>
-            <button class="like" value="1" @click="reactToPost">Give Honey</button>
-            <p>{{post.flagCount}}</p>
-            <button class="dislike" value="0" @click="reactToPost">Unsting</button>
+            <div class="like-button">
+                <img src="../assets/honey.png" />
+                <button value="1" @click="reactToPost">Give Honey</button>
+            </div>
         </div>
-        <div v-else-if="post?.reactionId === 1">
-            <p>{{post.likesCount}}</p>
-            <button class="like" value="1" @click="reactToPost">Take Back Honey</button>
+        <div class="dislike">
             <p>{{post.flagCount}}</p>
-            <button class="dislike" value="0" @click="reactToPost">Sting</button>
+            <div class="dislike-button" >
+                <img src="../assets/sting.webp"  />
+                <button value="0" @click="reactToPost">Unsting</button>
+            </div>
         </div>
-        <div v-else>
+    </div>
+    <div class="reactions" v-else-if="post?.reactionId === 1">
+        <div class="like">
             <p>{{post.likesCount}}</p>
-            <button class="like" value="1" @click="reactToPost">Give Honey</button>
+            <div class="like-button" >
+                <img src="../assets/honey.png" />
+                <button value="1" @click="reactToPost">Take Honey</button>
+            </div>
+        </div>
+        <div class="dislike">
             <p>{{post.flagCount}}</p>
-            <button class="dislike" value="0" @click="reactToPost">Sting</button>
+            <div class="dislike-button" >
+                <img src="../assets/sting.webp"  />
+                <button value="0" @click="reactToPost">Sting</button>
+            </div>
+        </div>
+    </div>
+    <div class="reactions" v-else>
+        <div class="like">
+            <p>{{post.likesCount}}</p>
+            <div class="like-button" >
+                <img src="../assets/honey.png" />
+                <button value="1" @click="reactToPost">Give Honey</button>
+            </div>
+        </div>
+        <div class="dislike">
+            <p>{{post.flagCount}}</p>
+            <div class="dislike-button" >
+                <img src="../assets/sting.webp"  />
+                <button value="0" @click="reactToPost">Sting</button>
+            </div>
         </div>
     </div>
 </template>
@@ -80,3 +108,57 @@ export default {
     }
 }
 </script>
+
+<style>
+* {
+    border: 1px solid black
+}
+
+.reactions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.like, .dislike {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.like button, .dislike button {
+    cursor: pointer;
+    padding: .25rem;
+    color: black;
+    background-color: #F2DA02;
+    transition: all 0.3s ease;
+}
+
+.like-button button:hover, .dislike-button button:hover {
+    color: white;
+    background-color: #31495E;
+}
+
+.like-button, .like-button *, .dislike-button, .dislike-button * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 30px;
+    margin: 0 5px;
+}
+
+.like-button img, .dislike-button img {
+    width: 25px;
+    height: 25px;
+}
+
+@media screen and (max-width: 675px) {
+    .like-button img, .dislike-button img {
+        display: none;
+    }
+
+    .like-button button, .dislike-button button {
+        font-size: small;
+    }
+}
+
+</style>

@@ -1,24 +1,32 @@
 <template>
     <div>
-        <div v-if="post?.content || post?.media">
+        <div class="post-card-container" v-if="post?.content || post?.media">
             <div v-if="!updatePost">
                 <RouterLink :to="{name: 'ProfilePage', params: {user_id: post.userId}}" name="ProfilePage">{{post.username}}</RouterLink>
-                <div @click="navigateToPostDetails">
+                <div class="post-content" @click="navigateToPostDetails">
                     <p>{{post.content}}</p>
                 </div>
                 <div v-if="post?.media">
                     <RepostPostCard v-if="originalPost" :post="originalPost" />
                     <img v-else :src="post?.media" />
                 </div>
-                <p>{{post.updatedAt}}</p>
-                <div>
-                    <p>{{post.commentsCount}}</p>
-                    <button @click="handleCommentClick">Comment</button>
-                </div>
-                <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
-                <div>
-                    <p>{{post.repostCount}}</p>
-                    <button class="repost" @click="handleRepostClick">Repost</button>
+                <p class="posted-date">Posted: {{updatedAt}}</p>
+                <div class="post-interactions">
+                    <div class="repost">
+                        <p>{{post.commentsCount}}</p>
+                        <div class="comment-button" >
+                            <img src="../assets/comment.svg" />
+                            <button @click="handleCommentClick">Comment</button>
+                        </div>
+                    </div>
+                    <ReactionButtons :post="post" @handlePostChange="this.handlePostChange" />
+                    <div class="comment">
+                        <p>{{post.repostCount}}</p>
+                        <div class="repost-button" >
+                            <img src="../assets/repost.svg" />
+                            <button @click="handleRepostClick">Repost</button>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div v-if="userStore.user.id === post.userId">
@@ -35,7 +43,7 @@
                     <button @click="setDeletePostConfirmation(false)">Never Mind</button>
                     <button @click="deletePost">Delete</button>
                 </div>
-        </div>
+            </div>
         </div>
     </div>
 </template>
@@ -65,7 +73,8 @@ export default {
     data: () => ({
         originalPost: null,
         updatePost: false,
-        deletePostConfirmation: false
+        deletePostConfirmation: false,
+        updatedAt: null
     }),
     methods: {
         handlePostChange(post, key, value) {
@@ -103,16 +112,87 @@ export default {
                 const post = response.data.postToDecrementRepost
                 this.handlePostChange(post, 'repostCount', post.repostCount - 1)
             }
-        }
+        },
+        convertDateToString(post) {
+            const date = new Date(post.updatedAt)
+            this.updatedAt = date.toDateString()
+        }  
     },
     mounted: function() {
         if (this.post?.media.includes(`${BASE_URL}`)) {
             this.getPostById()
         }
+        this.convertDateToString(this.post)
     }
 }
 </script>
 
 <style>
+.post-card-container {
+    margin: 10px 1px;
+    max-width: 1000px;
+    border: 2px #31495E solid;
+    border-radius: 5px;
+}
+
+.post-card-container a {
+    text-decoration: none;
+    color: #31495E;
+}
+
+.post-content {
+    cursor: pointer;
+}
+
+.post-interactions {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+}
+
+.comment, .repost {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comment-button, .comment-button *, .repost-button, .repost-button * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 30px;
+    margin: 0 5px;
+}
+
+.comment-button button, .repost-button button {
+    cursor: pointer;
+    padding: .25rem;
+    color: black;
+    background-color: #F2DA02;
+    transition: all 0.3s ease;
+}
+
+.comment-button button:hover, .repost-button button:hover {
+    color: white;
+    background-color: #31495E;
+}
+
+.comment-button img, .repost-button img {
+    width: 25px;
+    height: 25px;
+}
+
+.posted-date {
+    font-size: .75rem;
+}
+
+@media screen and (max-width: 675px) {
+    .comment-button img, .repost-button img {
+        display: none;
+    }
+
+    .comment-button button, .repost-button button {
+        font-size: small;
+    }
+}
 
 </style>

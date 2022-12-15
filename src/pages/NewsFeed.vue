@@ -1,7 +1,7 @@
 <template>
     <div>
-        <div v-if="userStore.user">
-            <h1>News Feed</h1>
+        <h1 class="buzz-header">The Buzz</h1>
+        <div class="news-feed" v-if="userStore.user">
             <PostForm @getFollowingPosts="getFollowingPosts" />
             <div v-if="followingPosts && followingPostsLengthCheck" >
                 <div class="news-feed-container" :key="post.id" v-for="post in followingPosts">
@@ -64,5 +64,12 @@ export default {
 </script>
 
 <style>
+.buzz-header {
+    margin: 10px;
+}
+
+.news-feed, .news-feed * {
+    max-width: 1000px;
+}
 
 </style>
