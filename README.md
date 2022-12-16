@@ -34,7 +34,8 @@ A Trello board was used to keep track of development progress and can be viewed 
 
 ### **_Technologies_**
 
--   React.js
+-   Vue.js
+    -   Pinia
 -   JavaScript
 -   CSS
 -   HTML
