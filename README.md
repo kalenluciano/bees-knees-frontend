@@ -12,7 +12,13 @@
 
 ### **_Description_**
 
-This app allows users to post content, follow other users, and interact with other users' posts. Join the hive.
+This app allows users to post content, follow other users, and interact with other users' posts through likes, dislikes, comments, and reposts.
+
+The news feed, called The Buzz, displays the most recent posts from a user's followers. The explore page, called Pollination Station, renders the most recent posts from all users. A user can click on a profile and follow other users.
+
+When a user clicks on a post, the page recursively renders all of the post's comments and their related comment threads. The counts for followers, following, reactions, comments, and reposts all update based on a user's interaction with portfolios and posts.
+
+Join the hive!
 
 ---
 
@@ -41,18 +47,25 @@ A Trello board was used to keep track of development progress and can be viewed 
 
 ### **_Screenshots_**
 
-#### Image 1 Header
+#### Login Page
 
-![Image]()
+![Login Page](./assets/login-page.png)
+
+#### News Feed
+
+![News Feed](./assets/news-feed.png)
+
+#### Explore Page
+
+![Explore Page](./assets/pollination-station.png)
+
+#### Profile Page
+
+![Profile Page](./assets/profile-page.png)
 
 ---
 
 ### **_Future Updates_**
 
--   [ ] TBD
-
----
-
-### **_Credits_**
-
-TBD
+-   [ ] Add a search feature to find posts with specific words
+-   [ ] Load a limited amount of posts at a time and conditionally render more when a user scrolls to the bottom of the rendered posts
