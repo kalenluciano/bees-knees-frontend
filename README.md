@@ -6,7 +6,7 @@
 
 #### [BeeKnees Backend](https://github.com/kalenluciano/bees-knees-backend)
 
-#### [Deployed Site]()
+#### [Deployed Site](https://bees-knees-frontend.herokuapp.com)
 
 ---
 
